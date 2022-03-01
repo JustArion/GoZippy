@@ -1,2 +1,48 @@
-# GoZippy
-ZippyShare Direct Link Viewer / Downloader
+#### ## ⚙️Requirements:
+- [GoLang](https://golang.org/dl/)
+
+##### Build:
+```
+git clone 
+cd BuildScripts
+./Build_Windows_AMD.ps1
+```
+
+Alternative:
+```sh
+git clone https://github.com/Arion-Kun/GoZippy
+go build .
+```
+
+
+#### Launch Arguments:
+>-h, --help | Prints this help screen.  
+-A, --async | Checks multiple links at once instead of one at a time.  
+-D, --download | Downloads the link(s) specified. (Only works if output is used. Async is unsupported.)  
+-F, --file | Reads all links from the file.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Example: ./GoZippy.exe -F 'C:\Users\User\Desktop\ZippyLinks.txt')  
+-L, --link | Downloads the link(s) specified.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Example: ./GoZippy.exe -L 'https://www3.zippyshare.com/v/CDCi2wVT/file.html' )  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(MultiLink Example: ./GoZippy.exe -L 'https://www20.zippyshare.com/v/oRFjDgWy/file.html' 'https://www20.zippyshare.com/v/GTU4Fiku/file.html' )  
+-S, --silent | Suppresses all output except direct links to std-out.  
+-Sr, --sort | Outputs the links in the same order it was found in the file. (Only works if async and output is used.)
+
+#### 📝Simple Link -> Direct Link:
+```
+./GoZippy.exe -L 'https://www3.zippyshare.com/v/CDCi2wVT/file.html'
+```
+Output:
+```
+https://www3.zippyshare.com/d/CDCi2wVT/49267/Gillette%20%2c%20the%20best%20a%20man%20can%20get.wav
+```
+
+#### 📝Linux Example:
+
+```
+/GoZippy -F links.txt -A -S -Sr >> output.txt
+```
+
+#### 📝Download To Folder:
+```
+.\GoZippy.exe -F 'C:\Users\User\Desktop\links.txt' -D -O 'C:\Users\User\Desktop\output\'
+```
