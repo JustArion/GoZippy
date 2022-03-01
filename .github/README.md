@@ -52,3 +52,4 @@ https://www3.zippyshare.com/d/CDCi2wVT/49267/Gillette%20%2c%20the%20best%20a%20m
 [Scotow - Inspiration / Rust Alternative](https://github.com/scotow/zippyst)
 <br>
 [schollz - ProgressBar](https://github.com/schollz/progressbar/)
+[Knetic - Expression Evaluation](https://pkg.go.dev/github.com/Knetic/govaluate)
