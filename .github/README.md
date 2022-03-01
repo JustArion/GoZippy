@@ -1,7 +1,7 @@
-#### ## ⚙️Requirements:
+#### ⚙️Requirements:
 - [GoLang](https://golang.org/dl/)
 
-##### Build:
+### Build:
 ```
 git clone 
 cd BuildScripts
@@ -15,7 +15,7 @@ go build .
 ```
 
 
-#### Launch Arguments:
+## Launch Arguments:
 >-h, --help | Prints this help screen.  
 -A, --async | Checks multiple links at once instead of one at a time.  
 -D, --download | Downloads the link(s) specified. (Only works if output is used. Async is unsupported.)  
@@ -27,7 +27,7 @@ go build .
 -S, --silent | Suppresses all output except direct links to std-out.  
 -Sr, --sort | Outputs the links in the same order it was found in the file. (Only works if async and output is used.)
 
-#### 📝Simple Link -> Direct Link:
+### 📝Simple Link -> Direct Link:
 ```
 ./GoZippy.exe -L 'https://www3.zippyshare.com/v/CDCi2wVT/file.html'
 ```
@@ -36,13 +36,13 @@ Output:
 https://www3.zippyshare.com/d/CDCi2wVT/49267/Gillette%20%2c%20the%20best%20a%20man%20can%20get.wav
 ```
 
-#### 📝Linux Example:
+### 📝Linux Example:
 
 ```
 /GoZippy -F links.txt -A -S -Sr >> output.txt
 ```
 
-#### 📝Download To Folder:
+### 📝Download To Folder:
 ```
 .\GoZippy.exe -F 'C:\Users\User\Desktop\links.txt' -D -O 'C:\Users\User\Desktop\output\'
 ```
