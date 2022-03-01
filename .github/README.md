@@ -46,3 +46,9 @@ https://www3.zippyshare.com/d/CDCi2wVT/49267/Gillette%20%2c%20the%20best%20a%20m
 ```
 .\GoZippy.exe -F 'C:\Users\User\Desktop\links.txt' -D -O 'C:\Users\User\Desktop\output\'
 ```
+
+#### Credits:
+
+[Scotow - Inspiration / Rust Alternative](https://github.com/scotow/zippyst)
+<br>
+[schollz - ProgressBar](https://github.com/schollz/progressbar/)
