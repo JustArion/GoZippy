@@ -111,6 +111,6 @@ func printHelp() {
 	padPrintln("-S, --silent", "| Suppresses all output except direct links to std-out.")
 	padPrintln("-Sr, --sort", "| Outputs the links in the same order it was found in the file. (Only works if async and output is used.)")
 	println("\nTypical Example: " + blue + "./GoZippy.exe -L 'https://www3.zippyshare.com/v/CDCi2wVT/file.html'" + reset)
-	println("Linux Example: From file, async + silent + sort to std-out/file: " + blue + "\n./GoZippy.exe -F 'C:\\Users\\User\\Desktop\\ZippyLinks.txt' -A -S -Sr >> output.txt" + reset)
+	println("Linux Example: From file, async + silent + sort to std-out/file: " + blue + "\n./GoZippy -F links.txt -D -O \"/home/User/Files'/\" -A -S -Sr >> output.txt" + reset)
 	println(fmt.Sprintf("Download To Folder Example:%s .\\GoZippy.exe -F 'C:\\Users\\User\\Desktop\\links.txt' -D -O 'C:\\Users\\User\\Desktop\\output\\'%s", blue, reset))
 }
