@@ -92,6 +92,7 @@ func padPrintInfo(str string) {
 }
 
 const blue = "\033[1;34m"
+const red = "\033[1;31m"
 const reset = "\033[0m"
 
 func printHelp() {

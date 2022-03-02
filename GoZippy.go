@@ -125,7 +125,7 @@ func InspectLinkAndSort(link string, index int, awaiter *sync.WaitGroup) {
 
 func LogErrorIfNecessary(errorMessage string, err *error) bool {
 	if *err != nil && !Silent {
-		fmt.Printf("%s: %s\n", errorMessage, *err)
+		fmt.Printf("%s: %s%s%s\n", errorMessage, red, *err, reset)
 		return true
 	}
 	return false

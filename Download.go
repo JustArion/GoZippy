@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/schollz/progressbar/v3"
 	"io"
+	"io/ioutil"
 	"net/http"
 	"net/url"
 	"os"
@@ -62,15 +63,14 @@ func (download *Download) DownloadFile() bool {
 		return false
 	}
 
-	partialFileFormat := fmt.Sprintf("%s%s", download.fileName, ".tmp") // it is .tmp but it can be any extension )
-	tempFolder := path.Join(os.TempDir(), partialFileFormat)
-	f, e2 := os.OpenFile(tempFolder, os.O_CREATE|os.O_WRONLY, 0644)
+	partialFileFormat := fmt.Sprintf("%s%s", download.fileName, ".tmp") // it is .tmp, but it can be any extension )
+	tempFile := path.Join(os.TempDir(), partialFileFormat)
+	f, e2 := os.OpenFile(tempFile, os.O_CREATE|os.O_WRONLY, 0644)
 
 	// We don't care if this errors, as long as the file is gone if something dramatic happens such as a panic
 	// Unfortunately the file stagnates in the Temp Folder is the application is interrupted with things like CTRL+C (^C)
 	// Or a general computer power failure.
 	// New data won't be appended, it is newly written to, so file stagnation leading to file corruption won't be a problem
-	defer os.Remove(tempFolder)
 
 	if LogErrorIfNecessary(fmt.Sprintf("Failed to create file %s: %s", download.fileName, e2), &e2) {
 		return false
@@ -86,18 +86,32 @@ func (download *Download) DownloadFile() bool {
 		_, e3 := io.Copy(io.MultiWriter(f, bar), resp.Body)
 		err2 = e3
 	}
-	e4 := f.Close()
-	if e4 != nil {
-		_ = os.Remove(tempFolder) // Cleanup trash
-		return false
-	}
-	e5 := os.Rename(tempFolder, path.Join(download.destinationFolder, download.fileName))
-	if e5 != nil {
-		LogErrorIfNecessary("Unable to rename", &e5)
+
+	if LogErrorIfNecessary(fmt.Sprintf("Failed to copy file %s: %s", download.fileName, err2), &err2) {
 		return false
 	}
 
-	if LogErrorIfNecessary(fmt.Sprintf("Failed to copy file %s: %s", download.fileName, err2), &err2) {
+	defer f.Close()
+	defer os.Remove(tempFile)
+
+	destinationPath := path.Join(download.destinationFolder, download.fileName)
+	//outputFile, e5 := os.OpenFile(destinationPath, os.O_CREATE|os.O_WRONLY, 0666)
+	//if e5 != nil {
+	//	LogErrorIfNecessary("Unable to create a destination file", &e5)
+	//	return false
+	//}
+
+	bytes, e6 := ioutil.ReadFile(tempFile)
+	if e6 != nil {
+		LogErrorIfNecessary("Unable to read the temporary file", &e6)
+		return false
+	}
+	copyFail := ioutil.WriteFile(destinationPath, bytes, 0644)
+	f.Close()
+	os.Remove(tempFile)
+	//_, copyFail := io.Copy(outputFile, f)
+	if copyFail != nil {
+		LogErrorIfNecessary("Unable to copy the file", &copyFail)
 		return false
 	}
 
