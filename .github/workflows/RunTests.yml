@@ -10,8 +10,7 @@ on:
   - cron: "30 10 * * 1-5"
 
 jobs:
-
-  build:
+  FunctionChecks:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
