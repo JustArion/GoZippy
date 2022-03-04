@@ -53,13 +53,13 @@ func lookupConfig() {
 			Sort = true
 		}
 	}
-	if containsArgs("-D", "--download") && containsArgs("-O", "--output") && !Async {
+	if containsArgs("-D", "--download") && !Async {
 		download = true
-		contains1, val1 := GoLaunch.TryGetValue("-O")
+		contains1, val1 := GoLaunch.TryGetValue("-D")
 		if contains1 {
 			cachedFolderLocation = val1[0]
 		} else {
-			contains2, val2 := GoLaunch.TryGetValue("--output")
+			contains2, val2 := GoLaunch.TryGetValue("--download")
 			if contains2 {
 				cachedFolderLocation = val2[0]
 			} else {
@@ -103,7 +103,7 @@ func printHelp() {
 	println("Program Commands / Launch Arguments:\n")
 	padPrintln("-h, --help", "| Prints this help screen.")
 	padPrintln("-A, --async", "| Checks multiple links at once instead of one at a time.")
-	padPrintln("-D, --download", "| Downloads the link(s) specified. (Only works if output is used. Async is unsupported.)") // TODO: Implement
+	padPrintln("-D, --download", "| Downloads the link(s) to the specified folder (-D 'C:\\Users\\User\\Desktop). (Only works if output is used. Async is unsupported.)") // TODO: Implement
 	padPrintln("-F, --file", "| Reads all links from the file.")
 	padPrintInfo("(Example: " + blue + "./GoZippy.exe -F 'C:\\Users\\User\\Desktop\\ZippyLinks.txt'" + reset + ")")
 	padPrintln("-L, --link", "| Downloads the link(s) specified.")
@@ -113,5 +113,5 @@ func printHelp() {
 	padPrintln("-Sr, --sort", "| Outputs the links in the same order it was found in the file. (Only works if async and output is used.)")
 	println("\nTypical Example: " + blue + "./GoZippy.exe -L 'https://www3.zippyshare.com/v/CDCi2wVT/file.html'" + reset)
 	println("Linux Example: From file, async + silent + sort to std-out/file: " + blue + "\n./GoZippy -F links.txt -A -S -Sr >> output.txt" + reset)
-	println(fmt.Sprintf("Download To Folder Example:%s .\\GoZippy.exe -F 'C:\\Users\\User\\Desktop\\links.txt' -D -O 'C:\\Users\\User\\Desktop\\output\\'%s", blue, reset))
+	println(fmt.Sprintf("Download To Folder Example:%s .\\GoZippy.exe -F 'C:\\Users\\User\\Desktop\\links.txt' -D 'C:\\Users\\User\\Desktop\\output\\'%s", blue, reset))
 }
