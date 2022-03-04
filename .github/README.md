@@ -1,3 +1,5 @@
+[![RenderTests](https://img.shields.io/github/workflow/status/Arion-Kun/GoZippy/Function%20Tests?label=Tests&style=for-the-badge)]()
+
 #### ⚙️Requirements:
 - [GoLang](https://golang.org/dl/)
 
