@@ -46,7 +46,7 @@ https://www3.zippyshare.com/d/CDCi2wVT/49267/Gillette%20%2c%20the%20best%20a%20m
 
 ### 📝Download To Folder:
 ```
-.\GoZippy.exe -F 'C:\Users\User\Desktop\links.txt' -D -O 'C:\Users\User\Desktop\output\'
+.\GoZippy.exe -F 'C:\Users\User\Desktop\links.txt' -D 'C:\Users\User\Desktop\output\'
 ```
 
 #### Credits:
