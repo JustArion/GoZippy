@@ -1,4 +1,4 @@
-name: GoZippy function Tests
+name: Function Tests
 
 on:
   push:
