@@ -1,4 +1,4 @@
-[![RenderTests](https://img.shields.io/github/workflow/status/Arion-Kun/GoZippy/Function%20Tests?label=Tests&style=for-the-badge)]()
+[![RenderTests](https://img.shields.io/github/workflow/status/Arion-Kun/GoZippy/Function%20Tests?label=Tests&style=for-the-badge)](https://github.com/Arion-Kun/GoZippy/blob/main/.github/workflows/RunTests.yml)
 
 #### ⚙️Requirements:
 - [GoLang](https://golang.org/dl/)
