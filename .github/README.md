@@ -1,4 +1,9 @@
-[![RenderTests](https://img.shields.io/github/workflow/status/Arion-Kun/GoZippy/Function%20Tests?label=Tests&style=for-the-badge)](https://github.com/Arion-Kun/GoZippy/blob/main/.github/workflows/RunTests.yml)
+<a href="https://github.com/Arion-Kun/GoZippy/blob/main/go.mod">
+	<img height=28 src="https://img.shields.io/github/go-mod/go-version/Arion-Kun/GoZippy?style=flat-square">
+</a>
+<a href="https://github.com/Arion-Kun/GoZippy/blob/main/.github/workflows/RunTests.yml">
+  <img height=28 src="https://img.shields.io/github/workflow/status/Arion-Kun/GoZippy/Function%20Tests?label=Tests&style=for-the-badge">
+</a>
 
 #### ⚙️Requirements:
 - [GoLang](https://golang.org/dl/)
