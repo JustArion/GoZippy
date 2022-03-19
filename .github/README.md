@@ -15,6 +15,7 @@ Alternative:
 git clone https://github.com/Arion-Kun/GoZippy
 go build .
 ```
+Further alternatives include selecting the relevant architecture from the BuildScripts folder.
 
 
 ## Launch Arguments:
