@@ -17,7 +17,6 @@ go build .
 ```
 Further alternatives include selecting the relevant architecture from the BuildScripts folder.
 
-
 ## Launch Arguments:
 >-h, --help | Prints this help screen.  
 -A, --async | Checks multiple links at once instead of one at a time.  
