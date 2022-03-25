@@ -25,7 +25,7 @@ Further alternatives include selecting the relevant architecture from the BuildS
 ## Launch Arguments:
 >-h, --help | Prints this help screen.  
 -A, --async | Checks multiple links at once instead of one at a time.  
--D, --download | Downloads the link(s) specified. (Only works if output is used. Async is unsupported.)  
+-D, --download | Downloads the link(s) specified. (Async is unsupported.)  
 -F, --file | Reads all links from the file.  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Example: ./GoZippy.exe -F 'C:\Users\User\Desktop\ZippyLinks.txt')  
 -L, --link | Downloads the link(s) specified.  
