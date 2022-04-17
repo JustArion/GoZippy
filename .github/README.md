@@ -10,7 +10,7 @@
 
 ### Build:
 ```
-git clone 
+git clone https://github.com/Arion-Kun/GoZippy
 cd BuildScripts
 ./Build_Windows_AMD.ps1
 ```
