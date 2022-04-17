@@ -6,31 +6,42 @@ import (
 )
 
 var Test_Links = []string{
-	"https://www3.zippyshare.com/v/CDCi2wVT/file.html",
-	"https://www101.zippyshare.com/v/nMUOpguX/file.html",
+	"https://www118.zippyshare.com/v/foexPFON/file.html",
+	"https://www103.zippyshare.com/v/eqNWB4ku/file.html",
 }
 
 func TestSiteConnection(t *testing.T) {
+	var success = false
 	for _, link := range Test_Links {
 		_, err1 := GetLinkContent(link)
-		if err1 != nil {
-			t.Error(fmt.Sprintf("Site is offline on link: %s", link))
+		if err1 == nil {
+			success = true
 		}
+	}
+	if success == false {
+		t.Error("All links failed the test, the site seems offline.")
 	}
 }
 
 func TestMakeFileZippyFile(t *testing.T) {
 
+	var success = false
+	var linkHolder = ""
 	for _, link := range Test_Links {
 		sitePtr, err1 := GetLinkContent(link)
 		if err1 != nil {
-			t.Error(fmt.Sprintf("Site is offline on link: %s", link))
+			continue
 		}
 
 		_, successful := TryMakeZippyFile(sitePtr)
-		if !successful {
-			t.Error(fmt.Sprintf("Failed to make zippy file for %s", link))
+		if successful {
+			success = true
+		} else {
+			linkHolder = link
 		}
+	}
+	if success == false {
+		t.Error(fmt.Sprintf("Failed to make zippy file for %s", linkHolder))
 	}
 
 }
