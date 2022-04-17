@@ -7,6 +7,7 @@
 
 #### ⚙️Requirements:
 - [GoLang](https://golang.org/dl/)
+- [Git](https://git-scm.com/downloads)
 
 ### Build:
 ```
