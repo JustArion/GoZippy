@@ -6,8 +6,8 @@ import (
 )
 
 var Test_Links = []string{
-	"https://www118.zippyshare.com/v/foexPFON/file.html",
-	"https://www103.zippyshare.com/v/eqNWB4ku/file.html",
+	"https://www84.zippyshare.com/v/LGzQUf1d/file.html",
+	"https://www10.zippyshare.com/v/LnhJvx0M/file.html",
 }
 
 func TestSiteConnection(t *testing.T) {
