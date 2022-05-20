@@ -10,16 +10,17 @@
 - [Git](https://git-scm.com/downloads)
 
 ### Build:
-```
+```sh
 git clone https://github.com/Arion-Kun/GoZippy
-cd BuildScripts
-./Build_Windows_AMD.ps1
+cd .\GoZippy\BuildScripts\
+.\Build_Windows_64bit.ps1
 ```
 
 Alternative:
 ```sh
 git clone https://github.com/Arion-Kun/GoZippy
-go build .
+cd .\GoZippy\BuildScripts\
+go build -o "bin/" ..
 ```
 Further alternatives include selecting the relevant architecture from the BuildScripts folder.
 
