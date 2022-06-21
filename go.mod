@@ -3,7 +3,7 @@ module github.com/Arion-Kun/GoZippy
 go 1.18
 
 require (
-	github.com/Arion-Kun/GoLaunch v0.0.0-20220218172301-40265435b03f
+	github.com/Arion-Kun/GoLaunch v1.0.1
 	github.com/Knetic/govaluate v3.0.0+incompatible
 )
 

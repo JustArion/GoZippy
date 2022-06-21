@@ -4,6 +4,8 @@ github.com/Arion-Kun/GoLaunch v0.0.0-20220218172021-96f1c4b349c1 h1:+CbipRcuYGcI
 github.com/Arion-Kun/GoLaunch v0.0.0-20220218172021-96f1c4b349c1/go.mod h1:pZ9cNrMvFMEQrXqFH956UKpRt6q8gWueCunqy49Wif0=
 github.com/Arion-Kun/GoLaunch v0.0.0-20220218172301-40265435b03f h1:NEqa73DSXviQwbUQUtavepJUw5euR00B/ePeVpVbGKA=
 github.com/Arion-Kun/GoLaunch v0.0.0-20220218172301-40265435b03f/go.mod h1:pZ9cNrMvFMEQrXqFH956UKpRt6q8gWueCunqy49Wif0=
+github.com/Arion-Kun/GoLaunch v1.0.1 h1:jPspDd7T8uDjAhP1lLO1Q3h9dflQkg0drCqd6MplXFY=
+github.com/Arion-Kun/GoLaunch v1.0.1/go.mod h1:pZ9cNrMvFMEQrXqFH956UKpRt6q8gWueCunqy49Wif0=
 github.com/Knetic/govaluate v3.0.0+incompatible h1:7o6+MAPhYTCF0+fdvoz1xDedhRb4f6s9Tn1Tt7/WTEg=
 github.com/Knetic/govaluate v3.0.0+incompatible/go.mod h1:r7JcOSlj0wfOMncg0iLm8Leh48TZaKVeNIfJntJ2wa0=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
