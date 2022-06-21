@@ -40,7 +40,7 @@ func NewDownload(link string, destinationFolder string) (*Download, error) {
 	return dl, nil
 }
 
-func (download *Download) DownloadFile() bool {
+func (download *Download) DownloadFile() (bool, *string) {
 	if !Silent {
 		fmt.Printf("%sDownloading file: '%s' to %s'%s'\n", blue, download.fileName, reset, download.destinationFolder)
 	}
@@ -49,7 +49,7 @@ func (download *Download) DownloadFile() bool {
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		LogErrorIfNecessary("", &err)
-		return false
+		return false, nil
 	}
 
 	defer func(Body io.ReadCloser) {
@@ -60,7 +60,7 @@ func (download *Download) DownloadFile() bool {
 	}(resp.Body)
 
 	if LogErrorIfNecessary(fmt.Sprintf("Failed to download %s to %s: %s", download.link, download.destinationFolder, err), &err) {
-		return false
+		return false, nil
 	}
 
 	partialFileFormat := fmt.Sprintf("%s%s", download.fileName, ".tmp") // it is .tmp, but it can be any extension )
@@ -73,7 +73,7 @@ func (download *Download) DownloadFile() bool {
 	// New data won't be appended, it is newly written to, so file stagnation leading to file corruption won't be a problem
 
 	if LogErrorIfNecessary(fmt.Sprintf("Failed to create file %s: %s", download.fileName, e2), &e2) {
-		return false
+		return false, nil
 	}
 
 	var err2 error
@@ -88,7 +88,7 @@ func (download *Download) DownloadFile() bool {
 	}
 
 	if LogErrorIfNecessary(fmt.Sprintf("Failed to copy file %s: %s", download.fileName, err2), &err2) {
-		return false
+		return false, nil
 	}
 
 	defer f.Close()
@@ -104,7 +104,7 @@ func (download *Download) DownloadFile() bool {
 	bytes, e6 := ioutil.ReadFile(tempFile)
 	if e6 != nil {
 		LogErrorIfNecessary("Unable to read the temporary file", &e6)
-		return false
+		return false, nil
 	}
 	copyFail := ioutil.WriteFile(destinationPath, bytes, 0644)
 	f.Close()
@@ -112,13 +112,13 @@ func (download *Download) DownloadFile() bool {
 	//_, copyFail := io.Copy(outputFile, f)
 	if copyFail != nil {
 		LogErrorIfNecessary("Unable to copy the file", &copyFail)
-		return false
+		return false, nil
 	}
 
 	if !Silent {
 		fmt.Printf("%sComplete: %s%s\n", blue, download.fileName, reset)
 	}
-	return true
+	return true, &destinationPath
 }
 
 func CreateProgressBar(maxBytes int64) *progressbar.ProgressBar {
@@ -128,15 +128,16 @@ func CreateProgressBar(maxBytes int64) *progressbar.ProgressBar {
 	return bar
 }
 
-func TryDownload(link string) {
+// TryDownload Returns Path if any
+func TryDownload(link string) *string {
 	if !download {
-		return
+		return nil
 	}
 
 	downloadPtr, err := NewDownload(link, cachedFolderLocation)
 	if err != nil {
 		LogErrorIfNecessary(fmt.Sprintf("Skipping Download of %s", link), &err)
-		return
+		return nil
 	}
 
 	currentLink := downloadPtr.link
@@ -144,13 +145,16 @@ func TryDownload(link string) {
 	escapedLink, err := url.QueryUnescape(path.Base(currentLink))
 	if err != nil {
 		LogErrorIfNecessary(fmt.Sprintf("Skipping Download of %s", currentLink), &err)
-		return
+		return nil
 	}
 
 	//LogProgressIfNecessary(fmt.Sprintf("Starting download of %s", escapedLink))
-	if !downloadPtr.DownloadFile() { // Finish is already logged inside the download function
+	downloaded, downloadPath := downloadPtr.DownloadFile()
+	if !downloaded { // Finish is already logged inside the download function
 		LogProgressIfNecessary(fmt.Sprintf("Failed to download %s", escapedLink))
+		return nil
 	}
+	return downloadPath
 }
 
 func LogProgressIfNecessary(progress string) {

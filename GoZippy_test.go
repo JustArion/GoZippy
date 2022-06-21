@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"testing"
 )
 
@@ -58,5 +59,15 @@ func Test_DownloadFile(t *testing.T) {
 
 	cachedFolderLocation = "."
 	download = true
-	TryDownload(cachedFile.GetEncodedLink())
+	downloadPath := TryDownload(cachedFile.GetEncodedLink())
+	if downloadPath == nil {
+		return
+	}
+	//  Remove TryDownload Artifacts
+	e := os.Remove(*downloadPath)
+	if e != nil {
+		t.Error("Failed to remove download artifact", *downloadPath)
+	} else {
+		t.Log("Removed download artifact from", *downloadPath)
+	}
 }
