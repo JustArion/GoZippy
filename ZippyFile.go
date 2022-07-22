@@ -3,7 +3,6 @@ package main
 import (
 	"errors"
 	"fmt"
-	"github.com/Knetic/govaluate"
 	"net/http"
 	"strconv"
 	"strings"
@@ -32,13 +31,14 @@ func TryMakeZippyFile(response *http.Response) (*ZippyFile, bool) {
 	}
 
 	//TEST
-	vars := GetVariableRegex().FindAllStringSubmatch(*scriptPtr, -1)
-	if vars != nil && !Silent {
-		fmt.Println("vars: ", vars)
-	}
+	//vars := GetVariableRegex().FindAllStringSubmatch(*scriptPtr, -1)
+	//if vars == nil && !Silent {
+	//	fmt.Println("var: ", vars)
+	//	return nil, false
+	//}
 	//
 
-	fragment := getLinkFragment(bodyPtr)
+	fragment := getLinkFragments(bodyPtr)
 	if fragment == nil {
 		return nil, false
 	}
@@ -77,38 +77,24 @@ var getScriptContent = func(bodyPtr *string) *string {
 	return nil
 }
 
-var getLinkFragment = func(bodyPtr *string) *[]string {
+var getLinkFragments = func(bodyPtr *string) *[]string {
 
-	a := GetLinkGeneratorRegex()
-	match := a.FindStringSubmatch(*bodyPtr)
-	if len(match) != 4 {
-		eMsg2 := fmt.Sprintf("link fragment length does not match: %d", len(match))
+	gen := GetLinkGeneratorRegex()
+	scriptContentPtr := getScriptContent(bodyPtr)
+	linkFragments := gen.FindStringSubmatch(*scriptContentPtr)
+	if len(linkFragments) != 4 { // 0 is the whole string, 1 is the id, 2 is the key, 3 is the encoded name
+		eMsg2 := fmt.Sprintf("link fragment length does not match: %d", len(linkFragments))
 		e := errors.New(eMsg2)
 		LogErrorIfNecessary(eMsg2, &e)
 		return nil
 	}
+
 	returnArray := make([]string, 3)
-	returnArray[0] = match[1] // id
-	expr, e := govaluate.NewEvaluableExpression(match[2])
-	if e != nil {
-		eMsg3 := fmt.Sprintf("could not create expression: %s", e.Error())
-		e := errors.New(eMsg3)
-		LogErrorIfNecessary(eMsg3, &e)
-		return nil
-	}
+	returnArray[0] = linkFragments[1] // id
+	key, _ := strconv.ParseInt(linkFragments[2], 10, 64)
 
-	//Solve rawKey
-	exp, e1 := expr.Evaluate(nil) // No parameters are passed to the expression
-	if e1 != nil {
-		eMsg3 := fmt.Sprintf("could not create expression: %s", e.Error())
-		LogErrorIfNecessary(eMsg3, &e1)
-		return nil
-	}
-
-	var solvedExpression = fmt.Sprintf("%v", exp)
-
-	returnArray[1] = solvedExpression // key
-	returnArray[2] = match[3]         // encodedName
+	returnArray[1] = strconv.FormatInt(key%1000 + 11, 10) // key
+	returnArray[2] = linkFragments[3]                 // encodedName
 
 	return &returnArray
 }
