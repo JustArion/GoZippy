@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/Arion-Kun/GoZippy/FragmentVariants/Utilities"
 	"os"
 	"testing"
 )
@@ -34,7 +35,7 @@ func Test_MakeZippyFile(t *testing.T) {
 			continue
 		}
 
-		filePtr, successful := TryMakeZippyFile(sitePtr)
+		successful, filePtr := Utilities.TryMakeZippyFile(sitePtr, _GetIterations)
 		if successful {
 			success = true
 			cachedFile = filePtr
@@ -48,7 +49,7 @@ func Test_MakeZippyFile(t *testing.T) {
 	}
 }
 
-var cachedFile *ZippyFile
+var cachedFile *Utilities.ZippyFile
 
 func Test_DownloadFile(t *testing.T) {
 

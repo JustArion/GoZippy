@@ -1,0 +1,2 @@
+  - Iterations of ZippyShare code checks. (0.go -> VariantLog/0.html)
+  - Note: 1.html is currently unused, will create an implementation when the need arises (`document.getElementById('dlbutton').href = "/d/PWRXlkLH/"+(Math.pow(a, 3)+b)+"/1mb";`)

@@ -1,10 +1,7 @@
 package main
 
 import (
-	"bytes"
 	"errors"
-	"fmt"
-	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -67,23 +64,4 @@ func GetLinkContent(link string) (*http.Response, error) {
 	}
 
 	return l, nil
-}
-
-var readBody = func(rc *http.Response) *string {
-
-	//Log if the Response Body can't close.
-	//The body should only be read once then discarded.
-	defer func(Body io.ReadCloser) {
-		err := Body.Close()
-		LogErrorIfNecessary(stringEmpty, &err)
-	}(rc.Body)
-
-	buf := new(bytes.Buffer)
-	_, err := buf.ReadFrom(rc.Body)
-	if err != nil {
-		fmt.Println(err)
-		return nil
-	}
-	newStr := buf.String() // The variable pointer is now a string
-	return &newStr
 }

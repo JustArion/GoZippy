@@ -6,6 +6,7 @@ import (
 	"bufio"
 	"fmt"
 	"github.com/Arion-Kun/GoLaunch"
+	"github.com/Arion-Kun/GoZippy/FragmentVariants/Utilities"
 	"log"
 	"os"
 	"sync"
@@ -89,7 +90,7 @@ func InspectLink(link string, awaiter *sync.WaitGroup) {
 	if LogErrorIfNecessary("Error getting link content:", &e1) {
 		return
 	}
-	file, made := TryMakeZippyFile(rawWebsitePtr)
+	made, file := Utilities.TryMakeZippyFile(rawWebsitePtr, _GetIterations)
 	if !made {
 		return
 	}
@@ -115,7 +116,7 @@ func InspectLinkAndSort(link string, index int, awaiter *sync.WaitGroup) {
 	if LogErrorIfNecessary("Error getting link content", &e1) {
 		return
 	}
-	file, made := TryMakeZippyFile(rawWebsitePtr)
+	made, file := Utilities.TryMakeZippyFile(rawWebsitePtr, _GetIterations)
 	if !made {
 		return
 	}
@@ -125,7 +126,7 @@ func InspectLinkAndSort(link string, index int, awaiter *sync.WaitGroup) {
 
 func LogErrorIfNecessary(errorMessage string, err *error) bool {
 	if *err != nil && !Silent {
-		fmt.Fprintf(os.Stderr, "%s: %s%s%s\n", errorMessage, red, *err, reset)
+		_, _ = fmt.Fprintf(os.Stderr, "%s: %s%s%s\n", errorMessage, red, *err, reset)
 		return true
 	}
 	return false
