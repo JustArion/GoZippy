@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/Arion-Kun/GoZippy/FragmentVariants/Utilities"
+	"io/ioutil"
 	"net/http"
 	"regexp"
 	"strconv"
@@ -66,12 +67,19 @@ var getLinkFragments = func(bodyPtr *string) *[]string {
 var readBody = func(rc *http.Response) *string {
 
 	buf := new(bytes.Buffer)
-	_, err := buf.ReadFrom(rc.Body)
+	// After reading the body, the http.Response.Body field is always nil.
+	// Therefore, we need to create a new buffer to store the body.
+
+	body, err := ioutil.ReadAll(rc.Body)
 	if err != nil {
 		fmt.Println(err)
 		return nil
 	}
+	rc.Body = ioutil.NopCloser(bytes.NewBuffer(body))
+
+	buf.Write(body)
 	newStr := buf.String() // The variable pointer is now a string
+
 	return &newStr
 }
 
