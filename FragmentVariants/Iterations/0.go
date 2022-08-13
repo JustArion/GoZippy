@@ -3,7 +3,6 @@ package Iterations
 import (
 	"fmt"
 	"github.com/Arion-Kun/GoZippy/FragmentVariants/Utilities"
-	"github.com/Knetic/govaluate"
 	"net/http"
 	"regexp"
 	"strconv"
@@ -50,18 +49,19 @@ var getLinkFragment = func(bodyPtr *string) *[]string {
 	}
 	returnArray := make([]string, 3)
 	returnArray[0] = match[1] // id
-	expr, e := govaluate.NewEvaluableExpression(match[2])
-	if e != nil {
-		//eMsg3 := fmt.Sprintf("could not create expression: %s", e.Error())
-		return nil
-	}
 
-	//Solve rawKey
-	exp, e1 := expr.Evaluate(nil) // No parameters are passed to the expression
-	if e1 != nil {
-		//eMsg3 := fmt.Sprintf("could not create expression: %s", e.Error())
+	unsolvedExpression := match[2]
+	expressionValues := GetEvaluationRegex0().FindStringSubmatch(unsolvedExpression)
+	if len(expressionValues) != 5 {
 		return nil
 	}
+	// (426765 % 51245 + 426765 % 913)
+	val1, _ := strconv.ParseInt(expressionValues[1], 10, 64)
+	val2, _ := strconv.ParseInt(expressionValues[2], 10, 64)
+	val3, _ := strconv.ParseInt(expressionValues[3], 10, 64)
+	val4, _ := strconv.ParseInt(expressionValues[4], 10, 64)
+
+	exp := val1%val2 + val3%val4
 
 	var solvedExpression = fmt.Sprintf("%v", exp)
 
@@ -72,7 +72,18 @@ var getLinkFragment = func(bodyPtr *string) *[]string {
 }
 
 const SCRIPT_REGEX = "(?s)<script type=\"text/javascript\">(.+?)</script>"
+const EVALUATION_REGEX = "\\((\\d+) % (\\d+) \\+ (\\d+) % (\\d+)\\)"
 const LINK_GENERATOR_REGEX = "document\\.getElementById\\('dlbutton'\\)\\.href\\s*=\\s*\"/d/(\\w+)/\"\\s*\\+\\s*([\\d\\w\\s+\\-*/%()]+?)\\s*\\+\\s*\"/([/\\w%.-]+)\";?"
+
+var rEvaluation0 *regexp.Regexp
+
+func GetEvaluationRegex0() *regexp.Regexp {
+
+	if rEvaluation0 == nil {
+		rEvaluation0 = regexp.MustCompile(EVALUATION_REGEX)
+	}
+	return rEvaluation0
+}
 
 var rScript0 *regexp.Regexp
 

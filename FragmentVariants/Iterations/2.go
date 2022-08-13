@@ -15,12 +15,12 @@ type Result2 struct{}
 func (z Result2) TryParse(response *http.Response) (bool, *Utilities.ZippyFile) {
 
 	bodyPtr := readBody(response)
-	scriptPtr := Utilities.TryFindScriptMatch(GetScriptRegex2(), bodyPtr, dlbuttonSubStr)
+	scriptPtr := Utilities.TryFindScriptMatch(GetScriptRegex0(), bodyPtr, dlbuttonSubStr)
 	if scriptPtr == nil {
 		return false, nil
 	}
 
-	fragment := getLinkFragments(bodyPtr)
+	fragment := getVersion2Fragments(bodyPtr)
 	if fragment == nil {
 		return false, nil
 	}
@@ -45,10 +45,10 @@ func (z Result2) TryParse(response *http.Response) (bool, *Utilities.ZippyFile) 
 
 const dlbuttonSubStr = "document.getElementById('dlbutton')"
 
-var getLinkFragments = func(bodyPtr *string) *[]string {
+var getVersion2Fragments = func(bodyPtr *string) *[]string {
 
 	gen := GetLinkGeneratorRegex2()
-	scriptContentPtr := Utilities.TryFindScriptMatch(GetScriptRegex2(), bodyPtr, dlbuttonSubStr)
+	scriptContentPtr := Utilities.TryFindScriptMatch(GetScriptRegex0(), bodyPtr, dlbuttonSubStr)
 	linkFragments := gen.FindStringSubmatch(*scriptContentPtr)
 	if len(linkFragments) != 4 { // 0 is the whole string, 1 is the id, 2 is the key, 3 is the encoded name
 		return nil
@@ -83,19 +83,7 @@ var readBody = func(rc *http.Response) *string {
 	return &newStr
 }
 
-const SCRIPT_REGEX2 = "(?s)<script type=\"text/javascript\">(.+?)</script>"
-
 const LINK_GENERATOR_REGEX2 = "document\\.getElementById\\('dlbutton'\\)\\.href\\s*=\\s*\"/d/(\\w+)/\"\\+\\(([^\\%]+)\\%1000\\s*\\+[^\\\"]+\"/([/\\w%.-]+)\";?"
-
-var rScript2 *regexp.Regexp
-
-func GetScriptRegex2() *regexp.Regexp {
-
-	if rScript2 == nil {
-		rScript2 = regexp.MustCompile(SCRIPT_REGEX2)
-	}
-	return rScript2
-}
 
 var rLinkGenerator2 *regexp.Regexp
 

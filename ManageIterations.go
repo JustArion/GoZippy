@@ -9,4 +9,5 @@ var _GetIterations = []Utilities.ZippyIteration{
 	Iterations.Result0{},
 	Iterations.Result1{},
 	Iterations.Result2{},
+	Iterations.Result3{},
 }
