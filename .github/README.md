@@ -6,7 +6,7 @@
 </a>
 
 #### Note:
-The DMCA clause of Anti-Circumvention does not apply to this project as the same concept applies as what the YT-DL project did. To read further check [here](https://github.com/github/dmca/blob/master/2020/11/2020-11-16-RIAA-reversal-effletter.pdf).
+The Anti-Circumvention clause of the DMCA does not apply to this project as the same concept applies as what the YT-DL project did. To read further check [here](https://github.com/github/dmca/blob/master/2020/11/2020-11-16-RIAA-reversal-effletter.pdf).
 
 #### ⚙️Requirements:
 - [GoLang](https://golang.org/dl/)
