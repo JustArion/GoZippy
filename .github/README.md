@@ -5,6 +5,9 @@
   <img height=28 src="https://img.shields.io/github/workflow/status/Arion-Kun/GoZippy/Function%20Tests?label=Tests&style=for-the-badge">
 </a>
 
+#### Note:
+The DMCA clause of Anti-Circumvention does not apply to this project as the same concept applies as what the YT-DL project did. To read further check [here](https://github.com/github/dmca/blob/master/2020/11/2020-11-16-RIAA-reversal-effletter.pdf).
+
 #### ⚙️Requirements:
 - [GoLang](https://golang.org/dl/)
 - [Git](https://git-scm.com/downloads)
