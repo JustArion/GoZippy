@@ -2,7 +2,7 @@
 	<img height=28 src="https://img.shields.io/github/go-mod/go-version/Arion-Kun/GoZippy?style=flat-square">
 </a>
 <a href="https://github.com/Arion-Kun/GoZippy/blob/main/.github/workflows/RunTests.yml">
-  <img height=28 src="https://img.shields.io/github/workflow/status/Arion-Kun/GoZippy/Function%20Tests?label=Tests&style=for-the-badge">
+  <img height=28 src="https://img.shields.io/github/actions/workflow/status/Arion-Kun/GoZippy/RunTests.yml?branch=main&label=Tests&style=for-the-badge">
 </a>
 
 #### Note:
