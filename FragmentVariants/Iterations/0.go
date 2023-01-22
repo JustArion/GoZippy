@@ -71,9 +71,9 @@ var getLinkFragment = func(bodyPtr *string) *[]string {
 	return &returnArray
 }
 
-const SCRIPT_REGEX = "(?s)<script type=\"text/javascript\">(.+?)</script>"
-const EVALUATION_REGEX = "\\((\\d+) % (\\d+) \\+ (\\d+) % (\\d+)\\)"
-const LINK_GENERATOR_REGEX = "document\\.getElementById\\('dlbutton'\\)\\.href\\s*=\\s*\"/d/(\\w+)/\"\\s*\\+\\s*([\\d\\w\\s+\\-*/%()]+?)\\s*\\+\\s*\"/([/\\w%.-]+)\";?"
+const SCRIPT_REGEX = `(?s)<script type="text/javascript">(.+?)</script>`
+const EVALUATION_REGEX = `\((\d+) % (\d+) \+ (\d+) % (\d+)\)`
+const LINK_GENERATOR_REGEX = `document\.getElementById\('dlbutton'\)\.href\s*=\s*"/d/(\w+)/"\s*\+\s*([\d\w\s+\-*/%()]+?)\s*\+\s*"/(.+?)";?`
 
 var rEvaluation0 *regexp.Regexp
 
