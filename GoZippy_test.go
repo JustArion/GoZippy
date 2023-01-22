@@ -8,8 +8,9 @@ import (
 )
 
 var Test_Links = []string{
-	"https://www120.zippyshare.com/v/PWRXlkLH/file.html",
+	"https://www16.zippyshare.com/v/0rQyN0As/file.html",
 	"https://www3.zippyshare.com/v/CDCi2wVT/file.html",
+	"https://www57.zippyshare.com/v/FbTM9y9B/file.html",
 }
 
 func Test_SiteConnection(t *testing.T) {
@@ -42,6 +43,7 @@ func Test_MakeZippyFile(t *testing.T) {
 			return
 		} else {
 			linkHolder = link
+			t.Log(fmt.Sprintf("All iterations failed for %s", link))
 		}
 	}
 	if success == false {

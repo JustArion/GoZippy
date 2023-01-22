@@ -66,7 +66,7 @@ var getVersion3Fragments = func(bodyPtr *string) *[]string {
 	return &returnArray
 }
 
-const LINK_GENERATOR_REGEX3 = "var a = (\\d+);[\\s\\S]+?document\\.getElementById\\('dlbutton'\\)\\.href\\s*=\\s*\"/d/(\\w+)/\"\\+\\(.+?(\\d+).+?\"/([/\\w%.-]+)\";?"
+const LINK_GENERATOR_REGEX3 = `var a = (\d+);[\s\S]+?document\.getElementById\('dlbutton'\)\.href\s*=\s*"/d/(\w+)/"\+\(.+?(\d+).+?"/([/\w%.-]+)";?`
 
 var rLinkGenerator3 *regexp.Regexp
 

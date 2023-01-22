@@ -83,7 +83,7 @@ var readBody = func(rc *http.Response) *string {
 	return &newStr
 }
 
-const LINK_GENERATOR_REGEX2 = "document\\.getElementById\\('dlbutton'\\)\\.href\\s*=\\s*\"/d/(\\w+)/\"\\+\\(([^\\%]+)\\%1000\\s*\\+[^\\\"]+\"/([/\\w%.-]+)\";?"
+const LINK_GENERATOR_REGEX2 = `document\.getElementById\('dlbutton'\)\.href\s*=\s*"/d/(\w+)/"\+\(([^\%]+)\%1000\s*\+[^\"]+"/(.+?)";?`
 
 var rLinkGenerator2 *regexp.Regexp
 
