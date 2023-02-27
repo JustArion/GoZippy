@@ -44,6 +44,7 @@ func (z Result2) TryParse(response *http.Response) (bool, *Utilities.ZippyFile) 
 }
 
 const dlbuttonSubStr = "document.getElementById('dlbutton')"
+const dlbuttonOmgSubStr = dlbuttonSubStr + ".omg"
 
 var getVersion2Fragments = func(bodyPtr *string) *[]string {
 
