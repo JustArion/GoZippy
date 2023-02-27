@@ -62,6 +62,7 @@ func Test_DownloadFile(t *testing.T) {
 
 	cachedFolderLocation = "."
 	download = true
+	t.Log("Downloading", cachedFile.GetEncodedLink())
 	downloadPath := TryDownload(cachedFile.GetEncodedLink())
 	if downloadPath == nil {
 		return
