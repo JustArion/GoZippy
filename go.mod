@@ -1,6 +1,6 @@
 module github.com/Arion-Kun/GoZippy
 
-go 1.18
+go 1.20
 
 require (
 	github.com/Arion-Kun/GoLaunch v1.0.1
