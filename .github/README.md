@@ -5,6 +5,9 @@
   <img height=28 src="https://img.shields.io/github/actions/workflow/status/Arion-Kun/GoZippy/RunTests.yml?branch=main&label=Tests&style=for-the-badge">
 </a>
 
+### ❗Archival Notice
+The website [Zippyshare](https://zippyshare.com) has shutdown and as a result, this repo will be archived indefinitely as a result.
+
 #### Note:
 The Anti-Circumvention clause of the DMCA does not apply to this project as the same concept applies as what the YT-DL project did. To read further check [here](https://github.com/github/dmca/blob/master/2020/11/2020-11-16-RIAA-reversal-effletter.pdf).
 
